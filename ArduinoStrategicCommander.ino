@@ -10,6 +10,7 @@
 int val[9] = {0, 0, 0, 0, 0, 0, 0, 0, 0};
 int lastVal[9] = {0, 0, 0, 0, 0, 0, 0, 0, 0};
 int mode = 0;
+int amountOfModes = 3;
 
 void setup() {
   pinMode(BTN1, INPUT_PULLUP);
@@ -67,11 +68,16 @@ void nextMode(int btn) {
     winampCtrl(0);
   }
   else if (val[btn] == 0 && lastVal[btn] == 1) {
-    if(mode<1){
+    if(mode<(amountOfModes-1)){
       mode++;
+      Serial.print("Mode = ");
+      Serial.println(mode);
+      delay(200);
     }
     else{
-      mode = 0;  
+      mode = 0; 
+      Serial.println(mode);
+      delay(200);
     }
   }
   else
@@ -128,14 +134,15 @@ void winampCtrl(int state) {
     case 7:
       Keyboard.press(KEY_LEFT_CTRL);
       Keyboard.press(KEY_LEFT_SHIFT);
-      Keyboard.press('b');
+      Keyboard.press(KEY_PAGE_UP);
+      Serial.println("vol+");
       delay(100);
       Keyboard.releaseAll();
       break;
     case 8:
       Keyboard.press(KEY_LEFT_CTRL);
       Keyboard.press(KEY_LEFT_SHIFT);
-      Keyboard.press('b');
+      Keyboard.press(KEY_PAGE_DOWN);
       Serial.println("vol-");
       delay(100);
       Keyboard.releaseAll();
@@ -178,39 +185,39 @@ void winampCtrl(int state) {
       Keyboard.releaseAll();
       break;
 
-    //Data for "ANNO "
+    //Data for "Pinball Fx "
     case 18:
-      Keyboard.press('b');
-      delay(100);
-      Keyboard.releaseAll();
-      break;
-    case 19:
-      Keyboard.press('n');
-      delay(100);
-      Keyboard.releaseAll();
-      break;
-    case 20:
       Keyboard.press('a');
       delay(100);
       Keyboard.releaseAll();
       break;
+    case 19:
+      Keyboard.press('d');
+      delay(100);
+      Keyboard.releaseAll();
+      break;
+    case 20:
+      Keyboard.press('c');
+      delay(100);
+      Keyboard.releaseAll();
+      break;
     case 21:
-      Keyboard.press('s');
+      Keyboard.press(KEY_RETURN);
       delay(100);
       Keyboard.releaseAll();
       break;
     case 22:
-      Keyboard.press('1');
+      Keyboard.press(KEY_LEFT_ARROW);
       delay(100);
       Keyboard.releaseAll();
       break;
     case 23:
-      Keyboard.press('g');
+      Keyboard.press(KEY_RIGHT_ARROW);
       delay(100);
       Keyboard.releaseAll();
       break;
     case 24:
-      Keyboard.press('h');
+      Keyboard.press(KEY_UP_ARROW);
       delay(100);
       Keyboard.releaseAll();
       break;
