@@ -31,6 +31,7 @@ void loop() {
   nextMode(BTN8);
 }
 
+//Function to check each btn
 void clickBtn(int btn) {
   val[btn] = digitalRead(btn);
 
@@ -58,6 +59,7 @@ void clickBtn(int btn) {
   lastVal[btn] = val[btn];
 }
 
+//Function to cycle through the different modes with a btn
 void nextMode(int btn) {
   val[btn] = digitalRead(btn);
 
@@ -79,8 +81,10 @@ void nextMode(int btn) {
   lastVal[btn] = val[btn];
 }
 
+//CASE-structure to send each keycombination
 void winampCtrl(int state) {
   switch (state) {
+    //Data for WINAMP
     case 2:
       Keyboard.press(KEY_LEFT_CTRL);
       Keyboard.press(KEY_LEFT_SHIFT);
@@ -136,7 +140,8 @@ void winampCtrl(int state) {
       delay(100);
       Keyboard.releaseAll();
       break;
-      
+
+    //Data for "a sunless sea"
     case 10:
       Keyboard.press('a');
       delay(100);
@@ -172,7 +177,44 @@ void winampCtrl(int state) {
       delay(100);
       Keyboard.releaseAll();
       break;
-      
+
+    //Data for "ANNO "
+    case 18:
+      Keyboard.press('b');
+      delay(100);
+      Keyboard.releaseAll();
+      break;
+    case 19:
+      Keyboard.press('n');
+      delay(100);
+      Keyboard.releaseAll();
+      break;
+    case 20:
+      Keyboard.press('a');
+      delay(100);
+      Keyboard.releaseAll();
+      break;
+    case 21:
+      Keyboard.press('s');
+      delay(100);
+      Keyboard.releaseAll();
+      break;
+    case 22:
+      Keyboard.press('1');
+      delay(100);
+      Keyboard.releaseAll();
+      break;
+    case 23:
+      Keyboard.press('g');
+      delay(100);
+      Keyboard.releaseAll();
+      break;
+    case 24:
+      Keyboard.press('h');
+      delay(100);
+      Keyboard.releaseAll();
+      break;
+           
     default:
       // if nothing else matches, do the default
       // default is optional
