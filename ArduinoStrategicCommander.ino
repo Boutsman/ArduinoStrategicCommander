@@ -7,8 +7,8 @@
 #define BTN7 8
 #define BTN8 9
 
-int val[9] = {0, 0, 0, 0, 0, 0, 0, 0, 0};
-int lastVal[9] = {0, 0, 0, 0, 0, 0, 0, 0, 0};
+int val[7] = {0, 0, 0, 0, 0, 0, 0};
+int lastVal[7] = {0, 0, 0, 0, 0, 0, 0};
 int mode = 0;
 int amountOfModes = 3;
 
@@ -34,12 +34,12 @@ void loop() {
 
 //Function to check each btn
 void clickBtn(int btn) {
-  val[btn] = digitalRead(btn);
+  val[btn-2] = digitalRead(btn);
 
-  if (val[btn] == 1 && lastVal[btn] == 0) {
+  if (val[btn-2] == 1 && lastVal[btn-2] == 0) {
     winampCtrl(0);
   }
-  else if (val[btn] == 0 && lastVal[btn] == 1) {
+  else if (val[btn-2] == 0 && lastVal[btn-2] == 1) {
     if (mode == 0) {
       winampCtrl(btn);
     }
@@ -60,17 +60,17 @@ void clickBtn(int btn) {
   {
     winampCtrl(0);
   }
-  lastVal[btn] = val[btn];
+  lastVal[btn-2] = val[btn-2];
 }
 
 //Function to cycle through the different modes with a btn
 void nextMode(int btn) {
-  val[btn] = digitalRead(btn);
+  val[btn-2] = digitalRead(btn);
 
   if (val[btn] == 1 && lastVal[btn] == 0) {
     winampCtrl(0);
   }
-  else if (val[btn] == 0 && lastVal[btn] == 1) {
+  else if (val[btn-2] == 0 && lastVal[btn-2] == 1) {
     if (mode < (amountOfModes - 1)) {
       mode++;
       Serial.print("Mode = ");
@@ -88,7 +88,7 @@ void nextMode(int btn) {
   {
     winampCtrl(0);
   }
-  lastVal[btn] = val[btn];
+  lastVal[btn-2] = val[btn-2];
 }
 
 //CASE-structure to send each keycombination
